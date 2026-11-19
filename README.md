@@ -12,12 +12,41 @@ It is plain HTML, CSS and JavaScript. There is nothing to install or build.
 - "Prefer to talk? WhatsApp us" and Call buttons
 - Fully responsive, from small phones to desktop
 
+## Login and sign-up (optional, needs the Node server)
+
+Visitors can create an account and log in. This needs a small Node.js server, so it does **not** work on
+plain static hosting (Netlify drop, GitHub Pages). On static hosting the **Log in** button stays hidden
+automatically and the rest of the site works as before.
+
+Run it locally (Node 18 or newer):
+
+```bash
+cd server
+npm install
+npm start                 # then open http://localhost:3000
+```
+
+How it works, in short:
+
+- **Sign up:** the password is never stored. Only a one-way **bcrypt** hash is saved in a SQLite file (`server/data/app.db`).
+- **Log in:** the typed password is hashed and compared. If it matches, the server sets a signed **JWT** in an `httpOnly` cookie.
+- **Session:** the browser sends the cookie on every request. `GET /api/me` tells the page who is logged in.
+- **Safety:** input is validated on the server, SQL uses prepared statements, login errors are generic (they never reveal
+  which emails exist), login attempts are rate-limited, and cross-site posts are blocked.
+
+Before putting it on a real server, set a secret: `JWT_SECRET=<long random text> NODE_ENV=production npm start`.
+Never commit the secret or `server/data/`. Both are in `.gitignore`.
+
+Files: `server/server.js` (API, heavily commented), `js/auth.js` (pop-up and buttons), styles at the end of `css/styles.css`.
+
 ## Project structure
 
 ```
 index.html        page content
 css/styles.css    all styles (colours and fonts are at the top)
 js/main.js        owner settings block + form and pop-up scripts
+js/auth.js        log in / sign up pop-up (only active when the server is running)
+server/           Node login server (server.js, package.json)
 images/           cover photo, gallery photos, logo
 ```
 

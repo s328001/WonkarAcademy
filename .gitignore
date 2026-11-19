@@ -14,3 +14,9 @@ _*.html
 
 # Logs
 *.log
+
+# Login server: dependencies, database and secrets must never be committed
+node_modules/
+server/data/
+.env
+server/.env

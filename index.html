@@ -21,7 +21,7 @@
 <header class="top"><div class="wrap">
   <a class="logo" href="#top"><img src="images/won-kar-logo-tillana.svg" alt="WON कर logo" width="44" height="44"><span id="brand">Wonkar Table Tennis Academy</span></a>
   <nav class="links" aria-label="Page sections"><a href="#programs">Programs</a><a href="#gallery">Gallery</a><a href="#timings">Timings</a><a href="#fees">Fees</a><a href="#faq">FAQ</a></nav>
-  <nav class="nav"><a class="mini" href="#contact">Contact<span class="hide-sm"> us</span></a><a class="mini" href="#apply">Apply</a></nav>
+  <nav class="nav"><a class="mini" href="#contact">Contact<span class="hide-sm"> us</span></a><a class="mini" href="#apply">Apply</a><button class="mini authbtn" id="authBtn" type="button" hidden aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="lbl" id="authLbl">Log in</span></button></nav>
 </div></header>
 
 <main id="top">
@@ -181,6 +181,38 @@
   </div>
 </dialog>
 
+<dialog id="authDlg" aria-labelledby="authTitle">
+  <button class="x" type="button" id="authX" aria-label="Close">&times;</button>
+
+  <!-- Log in / Sign up view -->
+  <div id="authForms">
+    <div class="tabs" role="tablist" aria-label="Log in or sign up">
+      <button type="button" role="tab" id="tabLogin" aria-selected="true">Log in</button>
+      <button type="button" role="tab" id="tabSignup" aria-selected="false">Sign up</button>
+    </div>
+    <h2 id="authTitle">Welcome back</h2>
+    <p class="note" id="authSub">Log in to your academy account.</p>
+    <form id="authForm" novalidate>
+      <label id="nameRow" hidden><span>Your name<span class="req" aria-hidden="true"> *</span></span><input name="name" autocomplete="name" maxlength="60"></label>
+      <label><span>Email<span class="req" aria-hidden="true"> *</span></span><input name="email" type="email" autocomplete="email" required maxlength="120"></label>
+      <label><span>Password<span class="req" aria-hidden="true"> *</span></span><input name="password" id="pw" type="password" autocomplete="current-password" required maxlength="72"></label>
+      <p class="note" id="pwHint" hidden>At least 8 characters.</p>
+      <label class="consent"><input type="checkbox" id="showPw"><span>Show password</span></label>
+      <p class="err" id="authErr" role="alert" hidden></p>
+      <button class="btn block" type="submit" id="authSubmit">Log in</button>
+    </form>
+  </div>
+
+  <!-- Signed-in view -->
+  <div id="authAccount" class="done" hidden>
+    <h2>Your account</h2>
+    <p>Signed in as <b id="accName"></b><br><span class="note" id="accEmail"></span></p>
+    <button class="btn block" type="button" id="logoutBtn">Log out</button>
+  </div>
+</dialog>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
 <script src="js/main.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>

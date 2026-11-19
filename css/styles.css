@@ -133,3 +133,24 @@ dialog#trialDlg::backdrop{background:rgba(6,14,36,.72)}
   select{font-size:.88rem;padding-left:10px;padding-right:6px}
 }
 @media (max-width:360px){select{font-size:.8rem}}
+
+/* --- login / sign-up --- */
+header.top button.mini{display:inline-flex;align-items:center;gap:8px;color:#fff;background:transparent;font:600 1rem var(--body);padding:10px 14px;border:1px solid #ffffff66;border-radius:999px;cursor:pointer;white-space:nowrap}
+header.top button.mini:hover,header.top a.mini:hover{background:#ffffff1f}
+header.top button.authbtn.in{background:#fff;color:var(--court);border-color:#fff}
+dialog#authDlg{width:min(430px,calc(100vw - 28px));max-height:92vh;overflow:auto;border:0;border-radius:18px;padding:26px 22px 22px;background:#fff;color:var(--ink);box-shadow:0 24px 60px rgba(6,14,36,.45);position:fixed}
+dialog#authDlg::backdrop{background:rgba(6,14,36,.72)}
+#authDlg .x{position:absolute;top:10px;right:10px;width:40px;height:40px;border:0;border-radius:50%;background:var(--paper);color:var(--court);font:700 1.5rem/1 var(--body);cursor:pointer}
+#authDlg h2{font-size:1.5rem;padding-right:40px}
+#authDlg form{margin-top:12px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;margin:6px 44px 18px 0;background:var(--paper);border-radius:999px}
+.tabs button{min-height:40px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:600 .95rem var(--body);cursor:pointer}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--court);box-shadow:0 2px 8px rgba(21,53,122,.15)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:30;max-width:calc(100vw - 32px);padding:12px 20px;border-radius:999px;background:var(--court-d);color:#fff;font-weight:600;font-size:.95rem;box-shadow:0 10px 30px rgba(6,14,36,.35)}
+@media (max-width:520px){
+  header.top button.authbtn{padding:0;width:36px;height:36px;justify-content:center;flex:none}
+  header.top button.authbtn .lbl{display:none}
+  header.top button.authbtn.in svg{display:none}
+  header.top button.authbtn.in::after{content:attr(data-initial);font-weight:700}
+}
+#toast{width:max-content;border-radius:16px;text-align:center}
